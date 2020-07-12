@@ -67,7 +67,7 @@ def get_reg_details(reg):
 
     return {
         records[i].text: records[i + 1].text
-        for i in range(len(records), 2)
+        for i in range(0, len(records), 2)
     }
 
 

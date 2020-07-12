@@ -25,7 +25,12 @@ def get_vehicle_details():
     if not reg:
         return 'Usage: http://server/?reg=<vehicle-registration-number>\n', 400
 
-    return get_reg_details(reg)
+    details = get_reg_details(reg)
+
+    if not details:
+        return 'Incorrect response from Parivahan server!\n', 500
+
+    return details
 
 
 if __name__ == '__main__':

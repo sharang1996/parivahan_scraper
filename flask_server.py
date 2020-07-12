@@ -1,3 +1,4 @@
+import os
 import requests
 from azcaptchaapi import AZCaptchaApi
 from bs4 import BeautifulSoup
@@ -5,8 +6,8 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-#plz take from enviornment variable!
-api = AZCaptchaApi("PASTE THE API KEY HERE!!")
+key = os.getenv("api_key")
+api = AZCaptchaApi(key)
 
 def get_reg_details(reg1, reg2):
     sess = requests.session()

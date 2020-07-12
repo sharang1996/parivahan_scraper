@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-'''Flask runner for the Parivahan crawler.'''
+'''
+Flask runner for the Parivahan crawler.
+
+# Usage:
+
+## Dev:
+    python3 app.py
+
+## Prod:
+    gunicorn3 --bind 0.0.0.0:5000 app:APP
+'''
 
 from flask import Flask, request
 from lib.crawler import get_reg_details

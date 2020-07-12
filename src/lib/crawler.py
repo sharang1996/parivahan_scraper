@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from azcaptchaapi import AZCaptchaApi
 
 API = AZCaptchaApi(getenv('PARIVAHAN_AZ_CAPTCHA_API_KEY'))
-print('CAPTCHA solver balance: ' + API.get_balance(), file=stderr)
+print('CAPTCHA solver balance: ' + str(API.get_balance()), file=stderr)
 
 
 def get_reg_details(reg):
@@ -42,8 +42,8 @@ def get_reg_details(reg):
         'form_rcdl:pnl_show form_rcdl:pg_show form_rcdl:rcdl_pnl',
         'form_rcdl:j_idt43': 'form_rcdl:j_idt43',
         'form_rcdl': 'form_rcdl',
-        'form_rcdl:tf_reg_no1': reg[:5],
-        'form_rcdl:tf_reg_no2': reg[5:],
+        'form_rcdl:tf_reg_no1': reg[:6],
+        'form_rcdl:tf_reg_no2': reg[6:],
         'form_rcdl:j_idt32:CaptchaID': img_text,
     }
 

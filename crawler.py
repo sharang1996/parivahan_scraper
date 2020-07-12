@@ -1,5 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
+from azcaptchaapi import AZCaptchaApi
+
+api = AZCaptchaApi("PASTE THE API KEY HERE!!")
+print(api.get_balance())
 
 def create_session(reg_no_1, reg_no_2):
 
@@ -16,8 +20,16 @@ def create_session(reg_no_1, reg_no_2):
     with open('img.png', 'wb')as f:
         f.write(img_req.content)
 
-    img_text = input('enter captcha value!')
+    with open('img.png', 'rb') as captcha_file:
+        captcha = api.solve(captcha_file)
+
+    img_text = captcha.await_result()
     print(img_text)
+    print(api.get_balance())
+    print('\n')
+
+    #img_text = input('enter captcha value!')
+    #print(img_text)
 
     data = {
             'javax.faces.partial.ajax': 'true',

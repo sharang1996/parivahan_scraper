@@ -63,6 +63,11 @@ def get_reg_details(reg):
     ]
 
     table = soup.find('table', class_=' '.join(table_classes))
+
+    if not table:
+        # incorrect response from Parivahan server
+        return None
+
     records = table.find_all('td')
 
     return {

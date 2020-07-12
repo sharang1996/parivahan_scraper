@@ -34,4 +34,4 @@ def get_vehicle_details():
 
 
 if __name__ == '__main__':
-    APP.run(port=8000, threaded=True)
+    APP.run(debug=True)

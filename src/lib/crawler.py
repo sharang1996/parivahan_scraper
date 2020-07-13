@@ -34,17 +34,27 @@ def get_reg_details(reg):
 
     img_text = captcha.await_result()
 
+    div = soup.find('div', class_="ui-grid-row bottom-space center-position")
+    button = div.find('button')
+    form_id = "form_rcdl:j_idt{}".format(button.get('id').split('j_idt')[1])
+    #print(form_id)
+
+    table = soup.find('table', class_="vahan-captcha")
+    img = table.find('img')
+    captcha_id = 'form_rcdl:j_idt{}:CaptchaID'.format(img.get('id').split('j_idt')[1].split(':')[0])
+    #print(captcha_id)
+
     params = {
+        form_id: form_id,
+        captcha_id: img_text,
+        'form_rcdl:tf_reg_no1': reg[:6],
+        'form_rcdl:tf_reg_no2': reg[6:],
         'javax.faces.partial.ajax': 'true',
-        'javax.faces.source': 'form_rcdl:j_idt43',
+        'javax.faces.source': form_id,
         'javax.faces.partial.execute': '@all',
         'javax.faces.partial.render':
         'form_rcdl:pnl_show form_rcdl:pg_show form_rcdl:rcdl_pnl',
-        'form_rcdl:j_idt43': 'form_rcdl:j_idt43',
         'form_rcdl': 'form_rcdl',
-        'form_rcdl:tf_reg_no1': reg[:6],
-        'form_rcdl:tf_reg_no2': reg[6:],
-        'form_rcdl:j_idt32:CaptchaID': img_text,
     }
 
     for hidden in soup.find_all('input', {'type': 'hidden'}):

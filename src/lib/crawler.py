@@ -7,7 +7,7 @@ from sys import stderr, argv
 from io import BytesIO, SEEK_SET
 from requests.sessions import Session
 from bs4 import BeautifulSoup
-from azcaptcha import AZCaptchaApi
+from lib.azcaptcha import AZCaptchaApi
 
 API = AZCaptchaApi(getenv('PARIVAHAN_AZ_CAPTCHA_API_KEY'))
 print('CAPTCHA solver balance: ' + str(API.get_balance()), file=stderr)

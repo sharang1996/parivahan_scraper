@@ -46,7 +46,6 @@ from requests import get, post
 BASE_URL = 'https://azcaptcha.com'
 REQ_URL = BASE_URL + '/in.php'
 RES_URL = BASE_URL + '/res.php'
-LOAD_URL = BASE_URL + '/load.php'
 
 
 class AZCaptchaApi:
@@ -127,7 +126,7 @@ class _Captcha:
         if self._cached_result is not None:
             return self._cached_result
 
-        text = self.api.get(self.api.RES_URL, {
+        text = self.api.get(RES_URL, {
             'action': 'get',
             'id': self.captcha_id,
         }).text
